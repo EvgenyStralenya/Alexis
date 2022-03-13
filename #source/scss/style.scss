@@ -1,0 +1,257 @@
+@import "normalize.scss";
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Poppins:wght@400;500;600&family=Sacramento&display=swap');
+
+// font-family: 'Libre Baskerville', serif;
+// font-family: 'Sacramento', cursive;
+
+$maxWidth: 1170;
+$minWidth: 280;
+$red: #fc5f45;
+$green: #38c695;
+$purple: #b27cf5;
+$orange:  #feb960;
+
+@mixin adaptiv-font($pcSize, $mobSize) {
+	@media screen and (min-width: #{$maxWidth +px}) {
+		font-size: #{$pcSize +px};
+	}
+
+	$addSize: $pcSize - $mobSize;
+	$maxWidth: $maxWidth - $minWidth;
+	font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - #{$minWidth + px}) / #{$maxWidth}));
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	position: relative;
+}
+  
+.container {
+	max-width: #{$maxWidth + px};
+	margin: 0 auto;
+	padding: 0 15px;
+	box-sizing: border-box;
+}
+
+.section__header {
+	margin-bottom: 78px;
+	text-align: center;
+
+	.header__title {
+		font-family: 'Libre Baskerville', serif;
+		@include adaptiv-font(50, 30);
+		line-height: 1.6;
+		font-weight: 700;
+		color: #313131;
+		margin: 0 0 20px;
+	}
+
+	.header__subtitle {
+		@include adaptiv-font(18, 14);
+		line-height: 1.6;
+		font-weight: 400;
+		color: #616161;
+		margin: 0;
+	}
+}
+
+.title {
+	font-family: 'Libre Baskerville', serif;
+	@include adaptiv-font(50, 30);
+	line-height: 1.6;
+	font-weight: 700;
+	color: #313131;
+}
+
+.button {
+	display: block;
+	max-width: 180px;
+	background-color: $red;
+	border-radius: 25px;
+	padding: 16px 15px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	font-size: 16px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #ffffff;
+	transition-duration: 0.3s;
+
+	&:hover {
+		background-color: #fff;
+		color: $red;
+	}
+}
+
+.header {
+	position: fixed;
+	z-index: 99;
+	background-color: #fff;
+	height: 75px;
+	width: 100%;
+	box-shadow: 0px 0px 24px 0px rgba(0,0,0,0.25);
+
+	.container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 100%;
+
+		.header__logo {
+			a {
+				display: block;
+
+				img {
+					max-width: 100%;
+				}
+			}
+		}
+
+		.menu {
+			.menu__list {
+				margin: 0;
+				padding: 0;
+
+				.menu__item {
+					display: inline-block;
+					list-style-type: none;
+					margin-left: 16px;
+					border-bottom: 2px solid transparent;
+
+					&:first-child {
+						margin-left: 0;
+					}
+
+					&:hover {
+						border-color: $red;
+					}
+
+					.menu__link {
+						@include adaptiv-font(14, 12);
+						line-height: 1.9;
+						font-weight: 500;
+						color: #272727;
+					}
+				}
+			}
+		}
+	}
+}
+
+.main {
+	padding: 230px 0 170px;
+	background: linear-gradient(to bottom, rgba(38,39,50,0.85) 0%,rgba(38,39,50,0.85) 100%), url(../img/main_background.jpg) center/cover no-repeat;
+	text-align: center;
+
+	.container {
+		max-width: 850px;
+		
+		.main__title {
+			font-family: 'Libre Baskerville', serif;
+			@include adaptiv-font(60, 28);
+			line-height: 1.4;
+			font-weight: 400;
+			color: #ffffff;
+			margin-bottom: 48px;
+		}
+
+		.main__button {
+			margin-bottom: 82px;
+		}
+
+		.main__features {
+			display: flex;
+			justify-content: space-around;
+
+			.main__feature {
+				max-width: 240px;
+
+				.feature__icon {
+					margin-bottom: 38px;
+
+					svg {
+						width: 40px;
+						height: 40px;
+					}
+				}
+
+				.feature__description {
+					@include adaptiv-font(18, 12);
+					font-weight: 500;
+					text-transform: uppercase;
+				}
+
+				&:nth-child(1) {
+					svg {
+						fill: $green;
+					}
+
+					.feature__description {
+						color: $green;
+					}
+				}
+				&:nth-child(2) {
+					svg {
+						fill: $purple;
+					}
+
+					.feature__description {
+						color: $purple;
+					}
+				}
+				&:nth-child(3) {
+					svg {
+						fill: $orange;
+					}
+
+					.feature__description {
+						color: $orange;
+					}
+				}
+			}
+		}
+	}
+}
+
+.about {
+	padding: 150px 0;
+	background-color: #fff;
+
+	.about__wrap {
+		width: 100%;
+		position: relative;
+	}
+
+	.about__text {
+		position: absolute;
+		right: 0;
+		top: 75px;
+		max-width: 652px;
+		padding: 8.2% 7.4% 9.3%;
+		box-sizing: border-box;
+		background-color: #ffffff;
+		box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.05);
+
+		.about__title {
+			margin-bottom: 10%;
+		}
+
+		.about__description {
+			@include adaptiv-font(15, 10);
+			line-height: 1.8;
+			font-weight: 400;
+			color: #616161;
+			margin: 0 0 30px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+
